@@ -1,21 +1,22 @@
 # Xionco
 Input Data pembelian
 
+Strukturnya
 admin-purchase-vscode/
-│
-├── package.json
-├── package-lock.json
-├── server.js
-├── db.js
 
-├── /views
-│ ├── layout.ejs
-│ ├── products.ejs
-│ ├── new_purchase.ejs
-│ └── Purchases.ejs
-│
-├── /public
-│ └── style.css
+- package.json
+- package-lock.json
+- server.js
+- db.js
+
+/views
+- layout.ejs
+- products.ejs
+- new_purchase.ejs
+- Purchases.ejs
+
+/public
+- style.css
 
 langkah-langkahnya 
 - npm install
