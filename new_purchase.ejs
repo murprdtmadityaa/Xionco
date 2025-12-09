@@ -1,0 +1,31 @@
+<% title = "Input Pembelian" %>
+
+<h2>Input Pembelian (Admin)</h2>
+
+<% if (errors && errors.length) { %>
+  <div class="alert alert-danger">
+    <ul>
+      <% errors.forEach(e => { %><li><%= e %></li><% }) %>
+    </ul>
+  </div>
+<% } %>
+
+<form method="POST" action="/admin/purchases">
+  <div class="mb-3">
+    <label class="form-label">Produk</label>
+    <select name="product_id" class="form-select" required>
+      <option value="">-- Pilih produk --</option>
+      <% products.forEach(p => { %>
+        <option value="<%= p.id %>"><%= p.name %> — Rp <%= p.price.toLocaleString('id-ID') %> (stock: <%= p.qty %>)</option>
+      <% }) %>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Jumlah</label>
+    <input type="number" name="qty" class="form-control" min="1" value="1" required />
+  </div>
+
+  <button class="btn btn-primary" type="submit">Simpan Pembelian</button>
+  <a class="btn btn-outline-secondary" href="/admin/products">Batal</a>
+</form>

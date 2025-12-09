@@ -1,0 +1,39 @@
+<% title = "Daftar Pembelian" %>
+
+<h2>Daftar Pembelian</h2>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th><th>Produk</th><th>Qty</th><th>Harga saat beli</th><th>Total</th><th>Tanggal</th><th>Status</th><th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% purchases.forEach(p => { %>
+      <tr>
+        <td><%= p.id %></td>
+        <td><%= p.product_name %></td>
+        <td><%= p.qty %></td>
+        <td>Rp <%= p.price_at_purchase.toLocaleString('id-ID') %></td>
+        <td>Rp <%= (p.qty * p.price_at_purchase).toLocaleString('id-ID') %></td>
+        <td><%= p.created_at %></td>
+        <td>
+          <% if (p.canceled) { %>
+            <span class="badge bg-danger">Canceled</span><br><small><%= p.canceled_at %></small>
+          <% } else { %>
+            <span class="badge bg-success">Active</span>
+          <% } %>
+        </td>
+        <td>
+          <% if (!p.canceled) { %>
+            <form method="POST" action="/admin/purchases/<%= p.id %>/cancel" style="display:inline">
+              <button class="btn btn-sm btn-warning" onclick="return confirm('Batalkan pembelian ini?');">Cancel</button>
+            </form>
+          <% } else { %>
+            <button class="btn btn-sm btn-secondary" disabled>—</button>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
